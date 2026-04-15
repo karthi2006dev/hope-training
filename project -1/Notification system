@@ -1,0 +1,74 @@
+abstract class Notification {
+    private String message;
+
+    public Notification(String message) {
+        this.message = message;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public abstract void send(String userName);
+}
+
+class EmailNotification extends Notification {
+
+    public EmailNotification(String message) {
+        super(message);
+    }
+
+    public void send(String userName) {
+        System.out.println("Email sent to " + userName + ": " + getMessage());
+    }
+}
+
+class SMSNotification extends Notification {
+
+    public SMSNotification(String message) {
+        super(message);
+    }
+
+    public void send(String userName) {
+        System.out.println("SMS sent to " + userName + ": " + getMessage());
+    }
+}
+
+class PushNotification extends Notification {
+
+    public PushNotification(String message) {
+        super(message);
+    }
+
+    public void send(String userName) {
+        System.out.println("Push notification to " + userName + ": " + getMessage());
+    }
+}
+
+class User {
+    private String name;
+
+    public User(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+}
+
+public class NotificationSystemOOP {
+
+    public static void main(String[] args) {
+
+        User user = new User("Karthi");
+
+        Notification n1 = new EmailNotification("Welcome!");
+        Notification n2 = new SMSNotification("OTP: 1234");
+        Notification n3 = new PushNotification("New offer!");
+``
+        n1.send(user.getName());
+        n2.send(user.getName());
+        n3.send(user.getName());
+    }
+}
